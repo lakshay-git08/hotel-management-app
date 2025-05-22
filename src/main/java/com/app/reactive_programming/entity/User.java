@@ -1,0 +1,43 @@
+package com.app.reactive_programming.entity;
+
+import java.util.Date;
+
+import org.springframework.data.annotation.Id;
+
+import com.app.reactive_programming.enums.UserRoleType;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+@Builder
+public class User {
+
+    @Id
+    private String id;
+
+    private String name;
+
+    private String email;
+
+    private String phone;
+
+    private String password;
+
+    private UserRoleType role;
+
+    private Date createdAt;
+
+    private Date updatedAt;
+
+}
+// "_id": "ObjectId",
+// "name": "string",
+// "email": "string",
+// "phone": "string",
+// "passwordHash": "string",
+// "role": "USER | OWNER | ADMIN",
+// "createdAt": "Date",
+// "updatedAt": "Date"

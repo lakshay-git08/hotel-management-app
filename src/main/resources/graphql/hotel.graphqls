@@ -1,0 +1,68 @@
+enum HotelStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+type Hotel {
+  id: String!
+  userId: String!
+  name: String!
+  description: String!
+  address: HotelAddress!
+  amenities: [String]
+  images: [String]
+  status: HotelStatus!
+  createdAt: String
+}
+
+type HotelAddress {
+  street: String!
+  city: String!
+  state: String!
+  zipCode: String!
+  location: HotelAddressLocation
+}
+
+type HotelAddressLocation {
+  type: String
+  coordinates: [Float]
+}
+
+input HotelInput {
+  name: String!
+  address: HotelAddressInput!
+}
+
+input HotelAddressInput {
+  street: String!
+  city: String!
+  state: String!
+  zipCode: String!
+  location: HotelAddressLocationInput
+}
+
+input HotelAddressLocationInput {
+  type: String
+  coordinates: [Float]
+}
+
+input ModifyHotelInput {
+  name: String
+  address: ModifyHotelAddressInput
+}
+
+input ModifyHotelAddressInput {
+  street: String
+  city: String
+  state: String
+  zipCode: String
+  location: ModifyHotelAddressLocationInput
+}
+
+input ModifyHotelAddressLocationInput {
+  type: String
+  coordinates: [Float]
+}
+
+#  type, enum, input
