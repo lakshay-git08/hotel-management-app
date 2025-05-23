@@ -32,6 +32,9 @@ type HotelAddressLocation {
 input HotelInput {
   name: String!
   address: HotelAddressInput!
+  description: String
+  amenities: [String]
+  images: [String]
 }
 
 input HotelAddressInput {
@@ -50,6 +53,9 @@ input HotelAddressLocationInput {
 input ModifyHotelInput {
   name: String
   address: ModifyHotelAddressInput
+  description: String
+  amenities: [String]
+  images: [String]
 }
 
 input ModifyHotelAddressInput {

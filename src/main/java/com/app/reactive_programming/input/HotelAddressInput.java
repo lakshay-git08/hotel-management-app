@@ -1,11 +1,13 @@
-package com.app.reactive_programming.entity;
+package com.app.reactive_programming.input;
+
+import com.app.reactive_programming.entity.HotelAddressLocation;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Data
 @Builder
-public class HotelAddress {
+public class HotelAddressInput {
 
     private String street;
 

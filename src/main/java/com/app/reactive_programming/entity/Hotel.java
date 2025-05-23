@@ -33,24 +33,3 @@ public class Hotel {
     private Date createdAt;
 
 }
-
-// {
-// "_id": "ObjectId",
-// "ownerId": "ObjectId (ref to users)",
-// "name": "string",
-// "description": "string",
-// "address": {
-// "street": "string",
-// "city": "string",
-// "state": "string",
-// "zipCode": "string",
-// "location": {
-// "type": "Point",
-// "coordinates": [longitude, latitude]
-// }
-// },
-// "amenities": ["WiFi", "TV", "AC", "Parking"],
-// "images": ["url1", "url2"],
-// "status": "PENDING | APPROVED | REJECTED",
-// "createdAt": "Date"
-// }
