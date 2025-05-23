@@ -1,0 +1,30 @@
+enum UserRoleType {
+  USER
+  OWNER
+  ADMIN
+}
+
+type User {
+  id: String!
+  name: String!
+  email: String
+  phone: String
+  password: String!
+  role: UserRoleType!
+  createdAt: Date
+  updatedAt: Date
+}
+
+input UserInput {
+  name: String!
+  email: String
+  phone: String
+  password: String!
+}
+
+input ModifyUserInput {
+  name: String
+  email: String
+  phone: String
+  password: String
+}

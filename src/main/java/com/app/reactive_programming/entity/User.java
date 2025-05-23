@@ -33,11 +33,3 @@ public class User {
     private Date updatedAt;
 
 }
-// "_id": "ObjectId",
-// "name": "string",
-// "email": "string",
-// "phone": "string",
-// "passwordHash": "string",
-// "role": "USER | OWNER | ADMIN",
-// "createdAt": "Date",
-// "updatedAt": "Date"

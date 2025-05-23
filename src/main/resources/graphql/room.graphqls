@@ -1,0 +1,25 @@
+enum RoomType {
+  SINGLE
+  DOUBLE
+  SUITE
+}
+
+type Room {
+  propertyId: String!
+  type: RoomType!
+  pricePerNight: Int!
+  totalRooms: Int!
+  availableRooms: Int!
+  amenities: [String]
+  images: [String]
+}
+
+input RoomInput {
+  type: RoomType!
+  pricePerNight: Int!
+  totalRooms: Int!
+  availableRooms: Int!
+  amenities: [String]
+  images: [String]
+}
+
