@@ -1,0 +1,18 @@
+type Review {
+  id: String!
+  userId: String!
+  hotelId: String!
+  rating: Float!
+  comment: String!
+  createdAt: String
+}
+input ReviewInput {
+  userId: String
+  hotelId: String
+  rating: Float!
+  comment: String!
+}
+input ModifyReviewInput {
+  rating: Float
+  comment: String
+}

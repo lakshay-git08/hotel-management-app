@@ -1,0 +1,33 @@
+enum PaymentMethod {
+  UPI
+  CARD
+  NETBANKING
+}
+
+enum PaymentStatus {
+  SUCCESS
+  FAILED
+  PENDING
+}
+
+type Payment {
+  id: String!
+  bookingId: String!
+  paymentMethod: PaymentMethod!
+  amount: Int!
+  status: PaymentStatus!
+  transactionId: String!
+  timestamp: String!
+}
+
+input PaymentInput {
+  bookingId: String!
+  paymentMethod: PaymentMethod!
+  amount: Int!
+  status: PaymentStatus
+  transactionId: String!
+}
+
+input ModifyPaymentInput {
+  status: PaymentStatus
+}

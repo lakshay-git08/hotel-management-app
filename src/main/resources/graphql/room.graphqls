@@ -5,7 +5,7 @@ enum RoomType {
 }
 
 type Room {
-  propertyId: String!
+  hotelId: String!
   type: RoomType!
   pricePerNight: Int!
   totalRooms: Int!
@@ -19,6 +19,15 @@ input RoomInput {
   pricePerNight: Int!
   totalRooms: Int!
   availableRooms: Int!
+  amenities: [String]
+  images: [String]
+}
+
+input ModifyRoomInput {
+  type: RoomType
+  pricePerNight: Int
+  totalRooms: Int
+  availableRooms: Int
   amenities: [String]
   images: [String]
 }

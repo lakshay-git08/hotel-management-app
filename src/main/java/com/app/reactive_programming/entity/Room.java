@@ -14,7 +14,7 @@ public class Room {
     @Id
     private String id;
 
-    private String propertyId;
+    private String hotelId;
 
     private RoomType type;
 

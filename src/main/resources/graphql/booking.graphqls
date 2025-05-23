@@ -1,0 +1,44 @@
+enum BookingPaymentStatus {
+  PENDING
+  PAID
+  FAILED
+}
+
+enum BookingStatus {
+  CONFIRMED
+  CANCELLED
+  CHECKED_IN
+  COMPLETED
+}
+
+type Booking {
+  id: String!
+  userId: String!
+  hotelId: String!
+  roomId: String!
+  checkIn: String!
+  checkOut: String
+  guestCount: Int!
+  totalAmount: Int!
+  paymentStatus: BookingPaymentStatus!
+  bookingStatus: BookingStatus!
+  createdAt: String
+}
+
+input BookingInput {
+  userId: String!
+  hotelId: String!
+  roomId: String!
+  checkIn: String
+  checkOut: String
+  guestCount: Int!
+  totalAmount: Int!
+}
+
+input ModifyBookingInput {
+  roomId: String
+  checkIn: String
+  checkOut: String
+  guestCount: Int
+  totalAmount: Int
+}
