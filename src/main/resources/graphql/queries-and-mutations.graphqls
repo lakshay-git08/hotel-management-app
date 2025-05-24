@@ -6,12 +6,15 @@ type Query {
 type Mutation {
   createHotel(input: HotelInput): Hotel
   updateHotel(id: String!, input: HotelInput): Hotel
-  deleteHotel(id: String): Boolean
-  approveHotel(id: String): Hotel
-  rejectHotel(id: String): Hotel
+  deleteHotel(id: String!): Boolean
+  approveHotel(id: String!): Hotel
+  rejectHotel(id: String!): Hotel
   addRoomToHotel(id: String!, input: RoomInput): Room
   updateRoom(id: String!, input: RoomInput): Room
-  deleteRoom(id: String): Boolean
+  deleteRoom(id: String!): Boolean
+  createBooking(input: BookingInput): Booking
+  cancelBooking(id: String!): Booking
+  updateBooking(id: String!, status: BookingStatus): Booking
 }
 
 # type Subscription {
