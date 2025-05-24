@@ -21,24 +21,42 @@ public class BookingServiceImpl implements BookingService {
     @Autowired
     ModelMapper modelMapper;
 
+    @Override
     public Mono<Booking> createBooking(BookingInput bookingInput) {
         Booking booking = modelMapper.map(bookingInput, Booking.class);
-        booking.setBookingStatus(BookingStatus.CONFIRMED);
+        booking.setBookingStatus(BookingStatus.PENDING);
         return bookingRepository.save(booking);
     }
 
+    @Override
+    public Mono<Booking> confirmBooking(String id) {
+        return bookingRepository.findById(id).flatMap(booking -> {
+            booking.setBookingStatus(BookingStatus.CONFIRMED);
+            return bookingRepository.save(booking);
+        });
+    }
+
+    @Override
     public Mono<Booking> cancelBooking(String id) {
         return bookingRepository.findById(id).flatMap(booking -> {
             booking.setBookingStatus(BookingStatus.CANCELLED);
             return bookingRepository.save(booking);
         });
-
     }
 
-    public Mono<Booking> updateBooking(String id, BookingStatus bookingStatus) {
-        return bookingRepository.findById(id).flatMap(existingBooking -> {
-            existingBooking.setBookingStatus(bookingStatus);
-            return bookingRepository.save(existingBooking);
+    @Override
+    public Mono<Booking> checkedInBooking(String id) {
+        return bookingRepository.findById(id).flatMap(booking -> {
+            booking.setBookingStatus(BookingStatus.CHECKED_IN);
+            return bookingRepository.save(booking);
+        });
+    }
+
+    @Override
+    public Mono<Booking> completeBooking(String id) {
+        return bookingRepository.findById(id).flatMap(booking -> {
+            booking.setBookingStatus(BookingStatus.COMPLETED);
+            return bookingRepository.save(booking);
         });
     }
 

@@ -18,7 +18,9 @@ public class Room {
 
     private RoomType type;
 
-    private int pricePerNight;
+    private double price;
+
+    private double discountedPrice;
 
     private int totalRooms;
 

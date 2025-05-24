@@ -13,8 +13,10 @@ type Mutation {
   updateRoom(id: String!, input: RoomInput): Room
   deleteRoom(id: String!): Boolean
   createBooking(input: BookingInput): Booking
+  confirmBooking(id: String!): Booking
   cancelBooking(id: String!): Booking
-  updateBooking(id: String!, status: BookingStatus): Booking
+  checkedInBooking(id: String!): Booking
+  completeBooking(id: String!): Booking
 }
 
 # type Subscription {

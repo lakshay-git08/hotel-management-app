@@ -10,7 +10,7 @@ import lombok.Data;
 public class RoomInput {
     private RoomType type;
 
-    private int pricePerNight;
+    private int price;
 
     private int totalRooms;
 

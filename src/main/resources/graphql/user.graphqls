@@ -21,6 +21,17 @@ input UserInput {
   phone: String
   password: String!
 }
+input RegisterInput {
+  name: String!
+  email: String!
+  phone: String!
+  password: String!
+  role: UserRoleType!
+}
+input LoginInput {
+  email: String!
+  password: String!
+}
 
 input ModifyUserInput {
   name: String

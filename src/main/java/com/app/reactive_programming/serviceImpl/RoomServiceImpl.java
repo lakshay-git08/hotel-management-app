@@ -1,5 +1,6 @@
 package com.app.reactive_programming.serviceImpl;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,20 +17,28 @@ public class RoomServiceImpl implements RoomService {
     @Autowired
     RoomRepository roomRepository;
 
+    @Autowired
+    ModelMapper modelMapper;
+
+    @Override
     public Mono<Room> addRoomToHotel(String hotelId, RoomInput roomInput) {
-        return null;
+        Room newRoom = modelMapper.map(roomInput, Room.class);
+        newRoom.setHotelId(hotelId);
+        return roomRepository.save(newRoom);
     }
 
+    @Override
     public Mono<Room> updateRoom(String id, RoomInput roomInput) {
         return roomRepository.findById(id)
                 .flatMap(existingRoom -> {
                     existingRoom.setType(roomInput.getType());
-                    existingRoom.setPricePerNight(roomInput.getPricePerNight());
+                    existingRoom.setPrice(roomInput.getPrice());
                     existingRoom.setTotalRooms(roomInput.getTotalRooms());
                     return roomRepository.save(existingRoom);
                 });
     }
 
+    @Override
     public Mono<Boolean> deleteRoom(String id) {
         Mono<Room> roomFromDB = roomRepository.findById(id);
         if (roomFromDB != null) {

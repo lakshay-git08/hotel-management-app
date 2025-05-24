@@ -34,18 +34,22 @@ public class HotelGraphqlController {
         return hotelService.createHotel(input);
     }
 
+    @MutationMapping
     public Mono<Hotel> updateHotel(@Argument String id, @Argument HotelInput input) {
         return hotelService.updateHotel(id, input);
     }
 
+    @MutationMapping
     public Mono<Boolean> deleteHotel(@Argument String id) {
         return hotelService.deleteHotel(id);
     }
 
+    @MutationMapping
     public Mono<Hotel> approveHotel(@Argument String id) {
         return hotelService.approveHotel(id);
     }
 
+    @MutationMapping
     public Mono<Hotel> rejectHotel(@Argument String id) {
         return hotelService.rejectHotel(id);
     }

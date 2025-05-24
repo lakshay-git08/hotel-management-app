@@ -23,20 +23,24 @@ public class HotelServiceImpl implements HotelService {
     @Autowired
     ModelMapper modelMapper;
 
+    @Override
     public Flux<Hotel> getAllHotels() {
         return hotelRepository.findAll();
     }
 
+    @Override
     public Mono<Hotel> getHotelById(String id) {
         return hotelRepository.findById(id);
     }
 
+    @Override
     public Mono<Hotel> createHotel(HotelInput hotelInput) {
         Hotel newHotel = modelMapper.map(hotelInput, Hotel.class);
         newHotel.setStatus(HotelStatus.PENDING);
         return hotelRepository.save(newHotel);
     }
 
+    @Override
     public Mono<Hotel> updateHotel(String id, HotelInput hotelInput) {
         return hotelRepository.findById(id)
                 .flatMap(existingHotel -> {
@@ -46,6 +50,7 @@ public class HotelServiceImpl implements HotelService {
                 });
     }
 
+    @Override
     public Mono<Boolean> deleteHotel(String id) {
         Mono<Hotel> hotelFromDB = hotelRepository.findById(id);
         if (hotelFromDB != null) {
@@ -55,6 +60,7 @@ public class HotelServiceImpl implements HotelService {
         return Mono.just(false);
     }
 
+    @Override
     public Mono<Hotel> approveHotel(String id) {
         return hotelRepository.findById(id).flatMap(hotel -> {
             hotel.setStatus(HotelStatus.APPROVED);
@@ -62,11 +68,11 @@ public class HotelServiceImpl implements HotelService {
         });
     }
 
+    @Override
     public Mono<Hotel> rejectHotel(String id) {
-        Mono<Hotel> hotelFromDB = hotelRepository.findById(id);
-        Hotel hotel = modelMapper.map(hotelFromDB, Hotel.class);
-        hotel.setStatus(HotelStatus.REJECTED);
-        return hotelFromDB;
+        return hotelRepository.findById(id).flatMap(hotel -> {
+            hotel.setStatus(HotelStatus.REJECTED);
+            return hotelRepository.save(hotel);
+        });
     }
-
 }

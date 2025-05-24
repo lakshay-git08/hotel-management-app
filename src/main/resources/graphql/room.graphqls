@@ -1,13 +1,15 @@
 enum RoomType {
   SINGLE
   DOUBLE
-  SUITE
+  SINGLE_AC
+  DOUBLE_AC
 }
 
 type Room {
   hotelId: String!
   type: RoomType!
-  pricePerNight: Int!
+  price: Float!
+  discountedPrice: Float!
   totalRooms: Int!
   availableRooms: Int!
   amenities: [String]
@@ -16,7 +18,8 @@ type Room {
 
 input RoomInput {
   type: RoomType!
-  pricePerNight: Int!
+  price: Float!
+  discountedPrice: Float
   totalRooms: Int!
   availableRooms: Int!
   amenities: [String]
@@ -25,10 +28,10 @@ input RoomInput {
 
 input ModifyRoomInput {
   type: RoomType
-  pricePerNight: Int
+  price: Float
+  discountedPrice: Float
   totalRooms: Int
   availableRooms: Int
   amenities: [String]
   images: [String]
 }
-
