@@ -1,7 +1,5 @@
 package com.app.reactive_programming.input;
 
-import com.app.reactive_programming.entity.HotelAddress;
-
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,7 +11,7 @@ public class HotelInput {
 
     private String description;
 
-    private HotelAddress address;
+    private HotelAddressInput address;
 
     private String[] amenities;
 

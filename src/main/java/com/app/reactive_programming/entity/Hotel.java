@@ -6,11 +6,15 @@ import org.springframework.data.annotation.Id;
 
 import com.app.reactive_programming.enums.HotelStatus;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Hotel {
 
     @Id

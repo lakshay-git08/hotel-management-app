@@ -30,6 +30,7 @@ type HotelAddressLocation {
 }
 
 input HotelInput {
+  userId: String!
   name: String!
   address: HotelAddressInput!
   description: String
