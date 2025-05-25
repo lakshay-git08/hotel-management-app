@@ -1,5 +1,7 @@
 package com.app.reactive_programming.serviceImpl;
 
+import java.util.Date;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,8 @@ public class BookingServiceImpl implements BookingService {
     public Mono<Booking> createBooking(BookingInput bookingInput) {
         Booking booking = modelMapper.map(bookingInput, Booking.class);
         booking.setBookingStatus(BookingStatus.PENDING);
+        booking.setCreatedAt(new Date());
+        booking.setStatusUpdatedAt(new Date());
         return bookingRepository.save(booking);
     }
 
@@ -32,6 +36,7 @@ public class BookingServiceImpl implements BookingService {
     public Mono<Booking> confirmBooking(String id) {
         return bookingRepository.findById(id).flatMap(booking -> {
             booking.setBookingStatus(BookingStatus.CONFIRMED);
+            booking.setStatusUpdatedAt(new Date());
             return bookingRepository.save(booking);
         });
     }
@@ -40,6 +45,7 @@ public class BookingServiceImpl implements BookingService {
     public Mono<Booking> cancelBooking(String id) {
         return bookingRepository.findById(id).flatMap(booking -> {
             booking.setBookingStatus(BookingStatus.CANCELLED);
+            booking.setStatusUpdatedAt(new Date());
             return bookingRepository.save(booking);
         });
     }
@@ -48,6 +54,7 @@ public class BookingServiceImpl implements BookingService {
     public Mono<Booking> checkedInBooking(String id) {
         return bookingRepository.findById(id).flatMap(booking -> {
             booking.setBookingStatus(BookingStatus.CHECKED_IN);
+            booking.setStatusUpdatedAt(new Date());
             return bookingRepository.save(booking);
         });
     }
@@ -56,6 +63,7 @@ public class BookingServiceImpl implements BookingService {
     public Mono<Booking> completeBooking(String id) {
         return bookingRepository.findById(id).flatMap(booking -> {
             booking.setBookingStatus(BookingStatus.COMPLETED);
+            booking.setStatusUpdatedAt(new Date());
             return bookingRepository.save(booking);
         });
     }

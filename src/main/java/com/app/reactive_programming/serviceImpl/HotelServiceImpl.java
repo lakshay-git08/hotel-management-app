@@ -1,5 +1,7 @@
 package com.app.reactive_programming.serviceImpl;
 
+import java.util.Date;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +39,8 @@ public class HotelServiceImpl implements HotelService {
     public Mono<Hotel> createHotel(HotelInput hotelInput) {
         Hotel newHotel = modelMapper.map(hotelInput, Hotel.class);
         newHotel.setStatus(HotelStatus.PENDING);
+        newHotel.setCreatedAt(new Date());
+        newHotel.setUpdatedAt(new Date());
         return hotelRepository.save(newHotel);
     }
 
@@ -46,24 +50,28 @@ public class HotelServiceImpl implements HotelService {
                 .flatMap(existingHotel -> {
                     existingHotel.setName(hotelInput.getName());
                     existingHotel.setAddress(modelMapper.map(hotelInput.getAddress(), HotelAddress.class));
+                    existingHotel.setUpdatedAt(new Date());
                     return hotelRepository.save(existingHotel);
                 });
     }
 
     @Override
     public Mono<Boolean> deleteHotel(String id) {
-        Mono<Hotel> hotelFromDB = hotelRepository.findById(id);
-        if (hotelFromDB != null) {
-            hotelRepository.deleteById(id);
-            return Mono.just(true);
-        }
-        return Mono.just(false);
+        return hotelRepository.findById(id).flatMap(hotel -> {
+            if (hotel != null) {
+                hotelRepository.deleteById(id);
+                hotel.setUpdatedAt(new Date());
+                return Mono.just(true);
+            }
+            return Mono.just(false);
+        });
     }
 
     @Override
     public Mono<Hotel> approveHotel(String id) {
         return hotelRepository.findById(id).flatMap(hotel -> {
             hotel.setStatus(HotelStatus.APPROVED);
+            hotel.setUpdatedAt(new Date());
             return hotelRepository.save(hotel);
         });
     }
@@ -72,6 +80,7 @@ public class HotelServiceImpl implements HotelService {
     public Mono<Hotel> rejectHotel(String id) {
         return hotelRepository.findById(id).flatMap(hotel -> {
             hotel.setStatus(HotelStatus.REJECTED);
+            hotel.setUpdatedAt(new Date());
             return hotelRepository.save(hotel);
         });
     }

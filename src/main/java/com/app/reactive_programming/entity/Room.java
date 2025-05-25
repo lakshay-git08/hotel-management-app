@@ -1,5 +1,7 @@
 package com.app.reactive_programming.entity;
 
+import java.util.Date;
+
 import org.springframework.data.annotation.Id;
 
 import com.app.reactive_programming.enums.RoomType;
@@ -29,5 +31,9 @@ public class Room {
     private String[] amenities;
 
     private String[] images;
+
+    private Date createdAt;
+
+    private Date updatedAt;
 
 }

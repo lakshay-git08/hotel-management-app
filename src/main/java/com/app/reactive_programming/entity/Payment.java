@@ -19,14 +19,20 @@ public class Payment {
 
     private String bookingId;
 
+    private String userId;
+
+    private String hotelId;
+
     private PaymentMethod paymentMethod;
 
-    private int amount;
+    private double amount;
 
     private PaymentStatus status;
 
-    private String transactionId;
+    private String referenceId;
 
-    private Date timestamp;
+    private Date createdAt;
+
+    private Date updatedAt;
 
 }

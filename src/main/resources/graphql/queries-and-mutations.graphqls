@@ -17,6 +17,9 @@ type Mutation {
   cancelBooking(id: String!): Booking
   checkedInBooking(id: String!): Booking
   completeBooking(id: String!): Booking
+  registerUser(input: RegisterInput): User
+  registerOwner(input: RegisterInput): User
+  loginUser(input: LoginInput): User
 }
 
 # type Subscription {

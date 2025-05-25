@@ -36,4 +36,6 @@ public class Hotel {
 
     private Date createdAt;
 
+    private Date updatedAt;
+
 }

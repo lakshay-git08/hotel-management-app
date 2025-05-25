@@ -1,5 +1,7 @@
 package com.app.reactive_programming.serviceImpl;
 
+import java.util.Date;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,8 @@ public class RoomServiceImpl implements RoomService {
     public Mono<Room> addRoomToHotel(String hotelId, RoomInput roomInput) {
         Room newRoom = modelMapper.map(roomInput, Room.class);
         newRoom.setHotelId(hotelId);
+        newRoom.setCreatedAt(new Date());
+        newRoom.setUpdatedAt(new Date());
         return roomRepository.save(newRoom);
     }
 
@@ -34,17 +38,20 @@ public class RoomServiceImpl implements RoomService {
                     existingRoom.setType(roomInput.getType());
                     existingRoom.setPrice(roomInput.getPrice());
                     existingRoom.setTotalRooms(roomInput.getTotalRooms());
+                    existingRoom.setUpdatedAt(new Date());
                     return roomRepository.save(existingRoom);
                 });
     }
 
     @Override
     public Mono<Boolean> deleteRoom(String id) {
-        Mono<Room> roomFromDB = roomRepository.findById(id);
-        if (roomFromDB != null) {
-            roomRepository.deleteById(id);
-            return Mono.just(true);
-        }
-        return Mono.just(false);
+        return roomRepository.findById(id).flatMap(room -> {
+            if (room != null) {
+                roomRepository.deleteById(id);
+                room.setUpdatedAt(new Date());
+                return Mono.just(true);
+            }
+            return Mono.just(false);
+        });
     }
 }

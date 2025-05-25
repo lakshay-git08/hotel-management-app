@@ -36,5 +36,7 @@ public class Booking {
     private BookingStatus bookingStatus;
 
     private Date createdAt;
+    
+    private Date statusUpdatedAt;
 
 }
