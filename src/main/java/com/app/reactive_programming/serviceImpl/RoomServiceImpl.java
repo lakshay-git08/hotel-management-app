@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.reactive_programming.entity.Room;
+import com.app.reactive_programming.input.ModifyRoomInput;
 import com.app.reactive_programming.input.RoomInput;
 import com.app.reactive_programming.repository.RoomRepository;
 import com.app.reactive_programming.service.RoomService;
@@ -32,12 +33,12 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public Mono<Room> updateRoom(String id, RoomInput roomInput) {
+    public Mono<Room> updateRoom(String id, ModifyRoomInput modifyRoomInput) {
         return roomRepository.findById(id)
                 .flatMap(existingRoom -> {
-                    existingRoom.setType(roomInput.getType());
-                    existingRoom.setPrice(roomInput.getPrice());
-                    existingRoom.setTotalRooms(roomInput.getTotalRooms());
+                    existingRoom.setType(modifyRoomInput.getType());
+                    existingRoom.setPrice(modifyRoomInput.getPrice());
+                    existingRoom.setTotalRooms(modifyRoomInput.getTotalRooms());
                     existingRoom.setUpdatedAt(new Date());
                     return roomRepository.save(existingRoom);
                 });

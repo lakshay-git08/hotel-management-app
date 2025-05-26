@@ -21,8 +21,8 @@ public class PaymentServiceImpl implements PaymentService {
     @Autowired
     ModelMapper modelMapper;
 
+    @Override
     public Mono<Payment> initiatePayment(String bookingId, PaymentInput paymentInput) {
-
         Payment newPayment = modelMapper.map(paymentInput, Payment.class);
         newPayment.setBookingId(bookingId);
         newPayment.setPaymentMethod(paymentInput.getPaymentMethod());
@@ -31,8 +31,14 @@ public class PaymentServiceImpl implements PaymentService {
         return paymentRepository.save(newPayment);
     }
 
-    public Mono<Payment> verifyPayment(String referenceId) {
-        return null;
+    @Override
+    public Mono<Boolean> verifyPayment(String id) {
+        return paymentRepository.findById(id).flatMap(payment -> {
+            if (payment.getStatus().equals(PaymentStatus.SUCCESS)) {
+                return Mono.just(true);
+            } else {
+                return Mono.just(false);
+            }
+        });
     }
-
 }

@@ -10,6 +10,7 @@ import com.app.reactive_programming.entity.Hotel;
 import com.app.reactive_programming.entity.HotelAddress;
 import com.app.reactive_programming.enums.HotelStatus;
 import com.app.reactive_programming.input.HotelInput;
+import com.app.reactive_programming.input.ModifyHotelInput;
 import com.app.reactive_programming.repository.HotelRepository;
 import com.app.reactive_programming.service.HotelService;
 
@@ -45,11 +46,11 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public Mono<Hotel> updateHotel(String id, HotelInput hotelInput) {
+    public Mono<Hotel> updateHotel(String id, ModifyHotelInput modifyHotelInput) {
         return hotelRepository.findById(id)
                 .flatMap(existingHotel -> {
-                    existingHotel.setName(hotelInput.getName());
-                    existingHotel.setAddress(modelMapper.map(hotelInput.getAddress(), HotelAddress.class));
+                    existingHotel.setName(modifyHotelInput.getName());
+                    existingHotel.setAddress(modelMapper.map(modifyHotelInput.getAddress(), HotelAddress.class));
                     existingHotel.setUpdatedAt(new Date());
                     return hotelRepository.save(existingHotel);
                 });
