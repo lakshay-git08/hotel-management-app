@@ -19,13 +19,13 @@ public class AuthGraphqlController {
     AuthService authService;
 
     @MutationMapping
-    public Mono<User> registerUser(@Argument RegisterInput registerInput) {
-        return authService.registerUser(registerInput);
+    public Mono<User> registerUser(@Argument RegisterInput input) {
+        return authService.registerUser(input);
     }
 
     @MutationMapping
-    public Mono<User> registerOwner(@Argument RegisterInput registerInput) {
-        return authService.registerOwner(registerInput);
+    public Mono<User> registerOwner(@Argument RegisterInput input) {
+        return authService.registerOwner(input);
     }
 
     @MutationMapping

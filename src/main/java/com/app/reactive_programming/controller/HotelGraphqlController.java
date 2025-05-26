@@ -36,8 +36,8 @@ public class HotelGraphqlController {
     }
 
     @MutationMapping
-    public Mono<Hotel> updateHotel(@Argument String id, @Argument ModifyHotelInput modifyHotelInput) {
-        return hotelService.updateHotel(id, modifyHotelInput);
+    public Mono<Hotel> updateHotel(@Argument String id, @Argument ModifyHotelInput input) {
+        return hotelService.updateHotel(id, input);
     }
 
     @MutationMapping

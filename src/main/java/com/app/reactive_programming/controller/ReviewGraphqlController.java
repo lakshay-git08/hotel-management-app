@@ -18,13 +18,13 @@ public class ReviewGraphqlController {
     ReviewService reviewService;
 
     @MutationMapping
-    public Mono<Review> addReview(ReviewInput reviewInput) {
-        return reviewService.addReview(reviewInput);
+    public Mono<Review> addReview(ReviewInput input) {
+        return reviewService.addReview(input);
     }
 
     @MutationMapping
-    public Mono<Review> updateReview(String id, ModifyReviewInput modifyReviewInput) {
-        return reviewService.updateReview(id, modifyReviewInput);
+    public Mono<Review> updateReview(String id, ModifyReviewInput input) {
+        return reviewService.updateReview(id, input);
     }
 
     @MutationMapping

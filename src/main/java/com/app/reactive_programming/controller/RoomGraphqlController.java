@@ -24,8 +24,8 @@ public class RoomGraphqlController {
     }
 
     @MutationMapping
-    public Mono<Room> updateRoom(@Argument String id, @Argument ModifyRoomInput modifyRoomInput) {
-        return roomService.updateRoom(id, modifyRoomInput);
+    public Mono<Room> updateRoom(@Argument String id, @Argument ModifyRoomInput input) {
+        return roomService.updateRoom(id, input);
     }
 
     @MutationMapping

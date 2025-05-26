@@ -18,8 +18,8 @@ public class PaymentGraphqlController {
     PaymentService paymentService;
 
     @MutationMapping
-    public Mono<Payment> initiatePayment(@Argument String bookingId, @Argument PaymentInput paymentInput) {
-        return paymentService.initiatePayment(bookingId, paymentInput);
+    public Mono<Payment> initiatePayment(@Argument String bookingId, @Argument PaymentInput input) {
+        return paymentService.initiatePayment(bookingId, input);
     }
 
     @MutationMapping
