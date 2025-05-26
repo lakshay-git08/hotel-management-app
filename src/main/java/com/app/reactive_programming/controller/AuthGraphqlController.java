@@ -2,6 +2,7 @@ package com.app.reactive_programming.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Controller;
 
 import com.app.reactive_programming.entity.User;
@@ -17,14 +18,17 @@ public class AuthGraphqlController {
     @Autowired
     AuthService authService;
 
+    @MutationMapping
     public Mono<User> registerUser(@Argument RegisterInput registerInput) {
         return authService.registerUser(registerInput);
     }
 
+    @MutationMapping
     public Mono<User> registerOwner(@Argument RegisterInput registerInput) {
         return authService.registerOwner(registerInput);
     }
 
+    @MutationMapping
     public Mono<User> loginUser(@Argument LoginInput LoginInput) {
         return authService.loginUser(LoginInput);
     }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 
 import com.app.reactive_programming.entity.Hotel;
 import com.app.reactive_programming.input.HotelInput;
+import com.app.reactive_programming.input.ModifyHotelInput;
 import com.app.reactive_programming.service.HotelService;
 
 import reactor.core.publisher.Flux;
@@ -35,8 +36,8 @@ public class HotelGraphqlController {
     }
 
     @MutationMapping
-    public Mono<Hotel> updateHotel(@Argument String id, @Argument HotelInput input) {
-        return hotelService.updateHotel(id, input);
+    public Mono<Hotel> updateHotel(@Argument String id, @Argument ModifyHotelInput modifyHotelInput) {
+        return hotelService.updateHotel(id, modifyHotelInput);
     }
 
     @MutationMapping

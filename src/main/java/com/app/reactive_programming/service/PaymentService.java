@@ -9,6 +9,6 @@ public interface PaymentService {
 
     public Mono<Payment> initiatePayment(String bookingId, PaymentInput paymentInput);
 
-    public Mono<Boolean> verifyPayment(String referenceId);
+    public Mono<Boolean> verifyPayment(String id);
 
 }

@@ -42,4 +42,9 @@ public class BookingGraphqlController {
         return bookingService.completeBooking(id);
     }
 
+    @MutationMapping
+    public Mono<Booking> getBookingDetails(String id) {
+        return bookingService.getBookingDetails(id);
+    }
+
 }

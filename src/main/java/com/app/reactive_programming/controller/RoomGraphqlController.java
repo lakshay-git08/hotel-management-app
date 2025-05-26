@@ -6,6 +6,7 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Controller;
 
 import com.app.reactive_programming.entity.Room;
+import com.app.reactive_programming.input.ModifyRoomInput;
 import com.app.reactive_programming.input.RoomInput;
 import com.app.reactive_programming.service.RoomService;
 
@@ -23,8 +24,8 @@ public class RoomGraphqlController {
     }
 
     @MutationMapping
-    public Mono<Room> updateRoom(@Argument String id, @Argument RoomInput input) {
-        return roomService.updateRoom(id, input);
+    public Mono<Room> updateRoom(@Argument String id, @Argument ModifyRoomInput modifyRoomInput) {
+        return roomService.updateRoom(id, modifyRoomInput);
     }
 
     @MutationMapping

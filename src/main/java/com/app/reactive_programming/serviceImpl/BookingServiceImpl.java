@@ -68,4 +68,9 @@ public class BookingServiceImpl implements BookingService {
         });
     }
 
+    @Override
+    public Mono<Booking> getBookingDetails(String id) {
+        return bookingRepository.findById(id);
+    }
+
 }

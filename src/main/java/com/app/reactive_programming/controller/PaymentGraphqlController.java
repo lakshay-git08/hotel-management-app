@@ -2,6 +2,7 @@ package com.app.reactive_programming.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Controller;
 
 import com.app.reactive_programming.entity.Payment;
@@ -16,12 +17,14 @@ public class PaymentGraphqlController {
     @Autowired
     PaymentService paymentService;
 
+    @MutationMapping
     public Mono<Payment> initiatePayment(@Argument String bookingId, @Argument PaymentInput paymentInput) {
         return paymentService.initiatePayment(bookingId, paymentInput);
     }
 
-    public Mono<Payment> verifyPayment(@Argument String referenceId) {
-        return paymentService.verifyPayment(referenceId);
+    @MutationMapping
+    public Mono<Boolean> verifyPayment(@Argument String id) {
+        return paymentService.verifyPayment(id);
     }
 
 }

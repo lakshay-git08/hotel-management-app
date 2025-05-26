@@ -16,5 +16,7 @@ public interface BookingService {
     public Mono<Booking> checkedInBooking(String id);
 
     public Mono<Booking> completeBooking(String id);
+    
+    public Mono<Booking> getBookingDetails(String id);
 
 }
