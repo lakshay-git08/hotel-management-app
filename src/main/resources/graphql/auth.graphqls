@@ -23,10 +23,9 @@ input UserInput {
 }
 input RegisterInput {
   name: String!
-  email: String!
-  phone: String!
+  email: String
+  phone: String
   password: String!
-  role: UserRoleType!
 }
 input LoginInput {
   email: String!

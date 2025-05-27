@@ -3,12 +3,14 @@ package com.app.reactive_programming.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
 import com.app.reactive_programming.entity.Booking;
 import com.app.reactive_programming.input.BookingInput;
 import com.app.reactive_programming.service.BookingService;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Controller
@@ -16,6 +18,16 @@ public class BookingGraphqlController {
 
     @Autowired
     BookingService bookingService;
+
+    @QueryMapping
+    public Flux<Booking> getAllBooking() {
+        return bookingService.getAllBooking();
+    }
+
+    @QueryMapping
+    public Mono<Booking> getBookingById(@Argument String id) {
+        return bookingService.getBookingById(id);
+    }
 
     @MutationMapping
     public Mono<Booking> createBooking(@Argument BookingInput input) {

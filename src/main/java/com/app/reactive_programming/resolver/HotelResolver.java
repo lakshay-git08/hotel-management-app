@@ -20,7 +20,7 @@ public class HotelResolver {
 
     @SchemaMapping(typeName = "Hotel", field = "user")
     public Mono<User> getUser(Hotel hotel) {
-        log.info("Control inside HotelResolver.getUser()");
-        return userService.getUserById(hotel.getId());
+        log.info("Control inside HotelQueryResolver.getUser()");
+        return userService.getUserById(hotel.getUserId());
     }
 }

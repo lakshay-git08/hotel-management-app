@@ -12,7 +12,9 @@ enum PaymentStatus {
 
 type Payment {
   id: String!
-  bookingId: String!
+  booking: Booking
+  user: User
+  hotel: Hotel
   paymentMethod: PaymentMethod!
   amount: Int!
   status: PaymentStatus!

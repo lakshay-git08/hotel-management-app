@@ -7,6 +7,9 @@ type Query {
 
   getAllUsers: [User]
   getUserById(id: String!): User
+
+  getAllBooking: [Booking]
+  getBookingById(id: String!): Booking
 }
 
 type Mutation {
@@ -42,3 +45,5 @@ type Mutation {
 # type Subscription {
 
 # }
+
+# user > room > hotel > booking > payment > review

@@ -12,6 +12,7 @@ import com.app.reactive_programming.input.BookingInput;
 import com.app.reactive_programming.repository.BookingRepository;
 import com.app.reactive_programming.service.BookingService;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -22,6 +23,16 @@ public class BookingServiceImpl implements BookingService {
 
     @Autowired
     ModelMapper modelMapper;
+
+    @Override
+    public Flux<Booking> getAllBooking() {
+        return bookingRepository.findAll();
+    }
+
+    @Override
+    public Mono<Booking> getBookingById(String id) {
+        return bookingRepository.findById(id);
+    }
 
     @Override
     public Mono<Booking> createBooking(BookingInput bookingInput) {

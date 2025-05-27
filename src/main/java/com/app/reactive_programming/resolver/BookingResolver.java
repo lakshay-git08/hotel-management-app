@@ -30,24 +30,19 @@ public class BookingResolver {
 
     @SchemaMapping(typeName = "Booking", field = "user")
     public Mono<User> getUser(Booking booking) {
-        log.info("Control inside BookingResolver.getUser()");
-        return userService.getUserById(booking.getId());
+        log.info("Control inside BookingQueryResolver.getUser()");
+        return userService.getUserById(booking.getUserId());
     }
 
     @SchemaMapping(typeName = "Booking", field = "hotel")
     public Mono<Hotel> getHotel(Booking booking) {
-        log.info("Control inside BookingResolver.getHotel()");
-        return hotelService.getHotelById(booking.getId());
+        log.info("Control inside BookingQueryResolver.getHotel()");
+        return hotelService.getHotelById(booking.getHotelId());
     }
 
     @SchemaMapping(typeName = "Booking", field = "room")
     public Mono<Room> getRoom(Booking booking) {
-        log.info("Control inside BookingResolver.getRoom()");
-        return roomService.getRoomById(booking.getId());
+        log.info("Control inside BookingQueryResolver.getRoom()");
+        return roomService.getRoomById(booking.getRoomId());
     }
-
 }
-
-// userId: String!
-// hotelId: String!
-// roomId: String!

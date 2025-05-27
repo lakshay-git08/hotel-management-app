@@ -33,10 +33,3 @@ public class AuthGraphqlController {
         return authService.loginUser(input);
     }
 }
-
-// getBookingDetails by bookingID
-// userId, bookingID, hotelID
-// createdAt, updatedAt set
-// register API
-// manually test -> hotel, room, user, booking, payment, review
-// pending API complete
