@@ -16,8 +16,9 @@ type Payment {
   paymentMethod: PaymentMethod!
   amount: Int!
   status: PaymentStatus!
-  transactionId: String!
-  timestamp: String!
+  referenceId: String!
+  createdAt: String!
+  updatedAt: String!
 }
 
 input PaymentInput {
@@ -25,7 +26,7 @@ input PaymentInput {
   paymentMethod: PaymentMethod!
   amount: Int!
   status: PaymentStatus
-  transactionId: String!
+  referenceId: String!
 }
 
 input ModifyPaymentInput {

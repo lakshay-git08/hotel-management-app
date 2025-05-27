@@ -6,7 +6,6 @@ enum RoomType {
 }
 
 type Room {
-  hotelId: String!
   type: RoomType!
   price: Float!
   discountedPrice: Float!
@@ -14,6 +13,7 @@ type Room {
   availableRooms: Int!
   amenities: [String]
   images: [String]
+  hotel: Hotel
 }
 
 input RoomInput {

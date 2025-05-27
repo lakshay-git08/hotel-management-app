@@ -19,8 +19,8 @@ public class RoomGraphqlController {
     RoomService roomService;
 
     @MutationMapping
-    public Mono<Room> addRoomToHotel(@Argument String hotelId, @Argument RoomInput input) {
-        return roomService.addRoomToHotel(hotelId, input);
+    public Mono<Room> addRoomToHotel(@Argument String id, @Argument RoomInput input) {
+        return roomService.addRoomToHotel(id, input);
     }
 
     @MutationMapping

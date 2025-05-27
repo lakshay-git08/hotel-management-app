@@ -9,23 +9,28 @@ type Mutation {
   deleteHotel(id: String!): Boolean
   approveHotel(id: String!): Hotel
   rejectHotel(id: String!): Hotel
+
   addRoomToHotel(id: String!, input: RoomInput): Room
   updateRoom(id: String!, input: ModifyRoomInput): Room
   deleteRoom(id: String!): Boolean
+
   createBooking(input: BookingInput): Booking
   confirmBooking(id: String!): Booking
   cancelBooking(id: String!): Booking
   checkedInBooking(id: String!): Booking
   completeBooking(id: String!): Booking
   getBookingDetails(id: String!): Booking
+
   registerUser(input: RegisterInput): User
   registerOwner(input: RegisterInput): User
   loginUser(input: LoginInput): User
+
   initiatePayment(id: String!, input: PaymentInput): Payment
   verifyPayment(id: String!): Boolean
-  addReview(input: ReviewInput): ReviewInput
-  updateReview(id: String!, input: ModifyReviewInput): ReviewInput
-  deleteReview(id: String): ReviewInput
+
+  addReview(input: ReviewInput): Review
+  updateReview(id: String!, input: ModifyReviewInput): Review
+  deleteReview(id: String): Review
 }
 
 # type Subscription {

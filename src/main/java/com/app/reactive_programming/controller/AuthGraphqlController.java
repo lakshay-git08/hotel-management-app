@@ -29,8 +29,8 @@ public class AuthGraphqlController {
     }
 
     @MutationMapping
-    public Mono<User> loginUser(@Argument LoginInput LoginInput) {
-        return authService.loginUser(LoginInput);
+    public Mono<User> loginUser(@Argument LoginInput input) {
+        return authService.loginUser(input);
     }
 }
 
