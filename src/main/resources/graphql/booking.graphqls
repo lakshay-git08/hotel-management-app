@@ -13,9 +13,9 @@ enum BookingStatus {
 
 type Booking {
   id: String!
-  userId: String!
-  hotelId: String!
-  roomId: String!
+  user: User
+  hotel: Hotel
+  room: Room
   checkIn: String!
   checkOut: String
   guestCount: Int!

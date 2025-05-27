@@ -12,6 +12,7 @@ import com.app.reactive_programming.input.RoomInput;
 import com.app.reactive_programming.repository.RoomRepository;
 import com.app.reactive_programming.service.RoomService;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -22,6 +23,16 @@ public class RoomServiceImpl implements RoomService {
 
     @Autowired
     ModelMapper modelMapper;
+
+    @Override
+    public Flux<Room> getAllRooms() {
+        return roomRepository.findAll();
+    }
+
+    @Override
+    public Mono<Room> getRoomById(String id) {
+        return roomRepository.findById(id);
+    }
 
     @Override
     public Mono<Room> addRoomToHotel(String hotelId, RoomInput roomInput) {

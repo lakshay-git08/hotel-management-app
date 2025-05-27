@@ -15,6 +15,7 @@ type Hotel {
   status: HotelStatus!
   createdAt: String
   updatedAt: String
+  user: User
 }
 
 type HotelAddress {

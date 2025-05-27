@@ -1,6 +1,12 @@
 type Query {
   getAllHotels: [Hotel]
   getHotelById(id: String!): Hotel
+
+  getAllRooms: [Room]
+  getRoomById(id: String!): Room
+
+  getAllUsers: [User]
+  getUserById(id: String!): User
 }
 
 type Mutation {
