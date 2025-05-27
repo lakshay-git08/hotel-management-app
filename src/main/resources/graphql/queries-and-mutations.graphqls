@@ -33,6 +33,7 @@ type Mutation {
   registerUser(input: RegisterInput): User
   registerOwner(input: RegisterInput): User
   loginUser(input: LoginInput): User
+  deleteUser(id: String!): Boolean
 
   initiatePayment(id: String!, input: PaymentInput): Payment
   verifyPayment(id: String!): Boolean

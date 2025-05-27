@@ -18,11 +18,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Flux<User> getAllUsers() {
-        return userRepository.findAll();
+        return userRepository.findAllUsers();
     }
 
     @Override
     public Mono<User> getUserById(String id) {
         return userRepository.findById(id);
+    }
+
+    @Override
+    public Mono<Boolean> deleteUser(String id) {
+        return userRepository.findById(id).flatMap(user -> {
+            user.setIsDeleted(true);
+            return userRepository.save(user).then(Mono.just(true));
+        }).switchIfEmpty(Mono.just(false));
     }
 }

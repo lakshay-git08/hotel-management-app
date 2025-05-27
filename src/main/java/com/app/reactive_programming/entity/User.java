@@ -34,4 +34,6 @@ public class User {
 
     private Date updatedAt;
 
+    private Boolean isDeleted;
+
 }

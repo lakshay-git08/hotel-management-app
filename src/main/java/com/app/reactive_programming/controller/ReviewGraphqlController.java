@@ -1,6 +1,7 @@
 package com.app.reactive_programming.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Controller;
 
@@ -18,17 +19,17 @@ public class ReviewGraphqlController {
     ReviewService reviewService;
 
     @MutationMapping
-    public Mono<Review> addReview(ReviewInput input) {
+    public Mono<Review> addReview(@Argument ReviewInput input) {
         return reviewService.addReview(input);
     }
 
     @MutationMapping
-    public Mono<Review> updateReview(String id, ModifyReviewInput input) {
+    public Mono<Review> updateReview(@Argument String id, @Argument ModifyReviewInput input) {
         return reviewService.updateReview(id, input);
     }
 
     @MutationMapping
-    public Mono<Boolean> deleteReview(String id) {
+    public Mono<Boolean> deleteReview(@Argument String id) {
         return reviewService.deleteReview(id);
     }
 }

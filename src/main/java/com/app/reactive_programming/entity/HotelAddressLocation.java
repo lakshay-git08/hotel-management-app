@@ -13,6 +13,6 @@ public class HotelAddressLocation {
 
     private String type;
 
-    private String[] coordinates;
+    private double[] coordinates;
 
 }

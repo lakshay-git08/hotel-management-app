@@ -12,7 +12,7 @@ type Hotel {
   address: HotelAddress!
   amenities: [String]
   images: [String]
-  status: HotelStatus!
+  status: HotelStatus
   createdAt: String
   updatedAt: String
   user: User

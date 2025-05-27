@@ -11,4 +11,6 @@ public interface UserService {
 
     public Mono<User> getUserById(String id);
 
+    public Mono<Boolean> deleteUser(String id);
+
 }
