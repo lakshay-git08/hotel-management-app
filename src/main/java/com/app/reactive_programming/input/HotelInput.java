@@ -9,6 +9,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class HotelInput {
 
+    private String userId;
+
     private String name;
 
     private String description;

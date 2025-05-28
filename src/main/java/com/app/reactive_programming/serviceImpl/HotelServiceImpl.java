@@ -28,7 +28,7 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public Flux<Hotel> getAllHotels() {
-        return hotelRepository.findAll();
+        return hotelRepository.findAllHotels();
     }
 
     @Override
@@ -39,9 +39,12 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public Mono<Hotel> createHotel(HotelInput hotelInput) {
         Hotel newHotel = modelMapper.map(hotelInput, Hotel.class);
+        newHotel.setId(null);
         newHotel.setStatus(HotelStatus.PENDING);
         newHotel.setCreatedAt(new Date());
         newHotel.setUpdatedAt(new Date());
+        newHotel.setDeleted(false);
+        newHotel.setActive(true);
         return hotelRepository.save(newHotel);
     }
 
@@ -59,13 +62,9 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public Mono<Boolean> deleteHotel(String id) {
         return hotelRepository.findById(id).flatMap(hotel -> {
-            if (hotel != null) {
-                hotelRepository.deleteById(id);
-                hotel.setUpdatedAt(new Date());
-                return Mono.just(true);
-            }
-            return Mono.just(false);
-        });
+            hotel.setDeleted(true);
+            return hotelRepository.save(hotel).then(Mono.just(true));
+        }).switchIfEmpty(Mono.just(false));
     }
 
     @Override

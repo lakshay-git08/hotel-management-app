@@ -28,6 +28,8 @@ public class PaymentServiceImpl implements PaymentService {
         newPayment.setPaymentMethod(paymentInput.getPaymentMethod());
         newPayment.setAmount(paymentInput.getAmount());
         newPayment.setStatus(PaymentStatus.PENDING);
+        newPayment.setDeleted(false);
+        newPayment.setActive(true);
         return paymentRepository.save(newPayment);
     }
 

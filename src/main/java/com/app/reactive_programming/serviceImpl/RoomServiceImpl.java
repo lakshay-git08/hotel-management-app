@@ -26,7 +26,7 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public Flux<Room> getAllRooms() {
-        return roomRepository.findAll();
+        return roomRepository.findAllRooms();
     }
 
     @Override
@@ -40,6 +40,8 @@ public class RoomServiceImpl implements RoomService {
         newRoom.setHotelId(hotelId);
         newRoom.setCreatedAt(new Date());
         newRoom.setUpdatedAt(new Date());
+        newRoom.setDeleted(false);
+        newRoom.setActive(true);
         return roomRepository.save(newRoom);
     }
 
@@ -58,12 +60,8 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public Mono<Boolean> deleteRoom(String id) {
         return roomRepository.findById(id).flatMap(room -> {
-            if (room != null) {
-                roomRepository.deleteById(id);
-                room.setUpdatedAt(new Date());
-                return Mono.just(true);
-            }
-            return Mono.just(false);
-        });
+            room.setDeleted(true);
+            return roomRepository.save(room).then(Mono.just(true));
+        }).switchIfEmpty(Mono.just(false));
     }
 }

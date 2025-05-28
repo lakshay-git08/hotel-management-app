@@ -23,6 +23,8 @@ type Booking {
   paymentStatus: BookingPaymentStatus!
   bookingStatus: BookingStatus!
   createdAt: String
+  active: Boolean
+  deleted: Boolean
 }
 
 input BookingInput {

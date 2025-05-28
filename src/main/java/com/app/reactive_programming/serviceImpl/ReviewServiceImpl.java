@@ -31,6 +31,8 @@ public class ReviewServiceImpl implements ReviewService {
         newReview.setComment(newReview.getComment());
         newReview.setCreatedAt(new Date());
         newReview.setUpdatedAt(new Date());
+        newReview.setDeleted(false);
+        newReview.setActive(true);
         return reviewRepository.save(newReview);
     }
 
@@ -49,14 +51,9 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public Mono<Boolean> deleteReview(String id) {
         return reviewRepository.findById(id).flatMap(review -> {
-            if (review != null) {
-                review.setUpdatedAt(new Date());
-                reviewRepository.deleteById(id);
-                return Mono.just(true);
-            }
-            return Mono.just(false);
-        });
-
+            review.setDeleted(true);
+            return reviewRepository.save(review).then(Mono.just(true));
+        }).switchIfEmpty(Mono.just(false));
     }
 
 }

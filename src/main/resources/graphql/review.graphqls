@@ -5,6 +5,8 @@ type Review {
   rating: Float!
   comment: String!
   createdAt: String
+  active: Boolean
+  deleted: Boolean
 }
 input ReviewInput {
   userId: String

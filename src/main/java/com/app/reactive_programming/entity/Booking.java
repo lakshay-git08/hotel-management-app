@@ -40,7 +40,11 @@ public class Booking {
     private BookingStatus bookingStatus;
 
     private Date createdAt;
-    
+
     private Date statusUpdatedAt;
+
+    private Boolean deleted;
+
+    private Boolean active;
 
 }

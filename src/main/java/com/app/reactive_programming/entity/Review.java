@@ -30,4 +30,8 @@ public class Review {
 
     private Date updatedAt;
 
+    private Boolean deleted;
+
+    private Boolean active;
+
 }

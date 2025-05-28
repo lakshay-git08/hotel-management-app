@@ -21,6 +21,8 @@ type Payment {
   referenceId: String!
   createdAt: String!
   updatedAt: String!
+  active: Boolean
+  deleted: Boolean
 }
 
 input PaymentInput {

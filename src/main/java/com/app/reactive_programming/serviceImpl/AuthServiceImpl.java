@@ -30,7 +30,8 @@ public class AuthServiceImpl implements AuthService {
         user.setRole(UserRoleType.USER);
         user.setCreatedAt(new Date());
         user.setUpdatedAt(new Date());
-        user.setIsDeleted(false);
+        user.setDeleted(false);
+        user.setActive(true);
         return authRepository.save(user);
     }
 
@@ -40,7 +41,8 @@ public class AuthServiceImpl implements AuthService {
         user.setRole(UserRoleType.OWNER);
         user.setCreatedAt(new Date());
         user.setUpdatedAt(new Date());
-        user.setIsDeleted(false);
+        user.setDeleted(false);
+        user.setActive(true);
         return authRepository.save(user);
     }
 

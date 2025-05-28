@@ -40,4 +40,8 @@ public class Room {
 
     private Date updatedAt;
 
+    private Boolean deleted;
+
+    private Boolean active;
+
 }

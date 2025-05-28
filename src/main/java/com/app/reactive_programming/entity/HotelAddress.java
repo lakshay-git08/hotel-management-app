@@ -21,4 +21,5 @@ public class HotelAddress {
 
     private HotelAddressLocation location;
 
+
 }

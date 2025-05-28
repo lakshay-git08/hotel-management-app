@@ -38,4 +38,8 @@ public class Hotel {
 
     private Date updatedAt;
 
+    private Boolean deleted;
+
+    private Boolean active;
+
 }

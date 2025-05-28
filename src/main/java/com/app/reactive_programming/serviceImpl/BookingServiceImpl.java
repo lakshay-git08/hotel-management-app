@@ -40,6 +40,8 @@ public class BookingServiceImpl implements BookingService {
         booking.setBookingStatus(BookingStatus.PENDING);
         booking.setCreatedAt(new Date());
         booking.setStatusUpdatedAt(new Date());
+        booking.setDeleted(false);
+        booking.setActive(true);
         return bookingRepository.save(booking);
     }
 

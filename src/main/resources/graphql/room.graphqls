@@ -14,6 +14,8 @@ type Room {
   amenities: [String]
   images: [String]
   hotel: Hotel
+  active: Boolean
+  deleted: Boolean
 }
 
 input RoomInput {

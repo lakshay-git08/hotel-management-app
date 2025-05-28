@@ -39,4 +39,8 @@ public class Payment {
 
     private Date updatedAt;
 
+    private Boolean deleted;
+
+    private Boolean active;
+
 }

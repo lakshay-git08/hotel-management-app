@@ -44,7 +44,6 @@ type Mutation {
 }
 
 # type Subscription {
-
 # }
 
 # user > room > hotel > booking > payment > review

@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Mono<Boolean> deleteUser(String id) {
         return userRepository.findById(id).flatMap(user -> {
-            user.setIsDeleted(true);
+            user.setDeleted(true);
             return userRepository.save(user).then(Mono.just(true));
         }).switchIfEmpty(Mono.just(false));
     }

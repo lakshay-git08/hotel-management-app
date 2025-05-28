@@ -16,6 +16,8 @@ type Hotel {
   createdAt: String
   updatedAt: String
   user: User
+  active: Boolean
+  deleted: Boolean
 }
 
 type HotelAddress {
